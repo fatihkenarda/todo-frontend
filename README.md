@@ -1,70 +1,137 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# 📝 Todo Uygulaması
 
-## Available Scripts
+Kategorili ve öncelikli görev yönetimi sağlayan tam kapsamlı bir **Todo Uygulaması**. Görevleri oluşturabilir, filtreleyebilir, kategorilere ayırabilir, durum ve önceliklere göre yönetebilirsiniz. Uygulama hem **Laravel API (Back-end)** hem de **React (Front-end)** ile geliştirilmiştir.
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## 🚀 Özellikler
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- ✅ Todo listeleme, arama, filtreleme ve sıralama  
+- 🗂️ Kategori yönetimi (renk destekli)
+- 📆 Bitiş tarihi seçimi ve yaklaşan görevler
+- 🔄 Görev durumu güncelleme (Beklemede, Devam Ediyor, Tamamlandı, İptal Edildi)
+- ⚡ Öncelik seviyeleri (Düşük, Orta, Yüksek)
+- 📊 Dashboard istatistikleri
+- ♻️ Soft delete ve duruma göre silme
+- 🔒 XSS koruması ve input validation
+- 🔁 Repository & Service Layer mimarisi (Laravel)
+- 🌈 Tailwind CSS ile şık kullanıcı arayüzü
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---
 
-### `npm test`
+## 🧰 Kullanılan Teknolojiler
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Back-end (Laravel API)
+- Laravel 10+
+- PHP 8.1+
+- MySQL
+- Sanctum (JWT Auth alternatifi)
+- Repository + Service Layer
+- Form Request Validations
+- CORS + Middleware + Resource Wrappers
 
-### `npm run build`
+### Front-end (React)
+- React 18+
+- React Router v6+
+- React Hook Form + Yup
+- Axios
+- Tailwind CSS
+- react-datepicker
+- react-icons
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## ⚙️ Kurulum Adımları
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 1. Back-end (Laravel API)
 
-### `npm run eject`
+```bash
+git clone https://github.com/kullanici/todo-api.git
+cd todo-api
+cp .env.example .env
+composer install
+php artisan key:generate
+php artisan migrate --seed
+php artisan serve
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+> `.env` dosyasına uygun şekilde veritabanı bilgilerini girin.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 2. Front-end (React)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```bash
+git clone https://github.com/kullanici/todo-frontend.git
+cd todo-frontend
+npm install
+npm run dev
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+> `REACT_APP_API_BASE_URL=http://localhost:8000/api` olacak şekilde `.env` dosyası eklemeyi unutma.
 
-## Learn More
+---
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## ▶️ Uygulamayı Çalıştırma
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+1. Terminal 1: Laravel API  
+   `php artisan serve` → `http://localhost:8000`
 
-### Code Splitting
+2. Terminal 2: React Frontend  
+   `npm run dev` → `http://localhost:5173`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+---
 
-### Analyzing the Bundle Size
+## 📡 API Dokümantasyonu
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Tüm uç noktalar detaylı açıklamalarıyla birlikte aşağıdaki JSON formatında döner:
 
-### Making a Progressive Web App
+```json
+{
+  "status": true,
+  "message": "İşlem başarılı",
+  "data": { ... },
+  "meta": { ... },
+  "errors": null
+}
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### Örnek Uç Noktalar:
+- `GET /api/todos`
+- `POST /api/todos`
+- `GET /api/todos/statistics`
+- `GET /api/todos/upcoming`
+- `GET /api/categories`
+- `POST /api/categories`
 
-### Advanced Configuration
+📝 Daha fazlası için [API Dökümantasyon Sayfası](http://localhost:8000/api/docs) *(varsa Swagger veya Postman linki ekleyebilirsin)*
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+---
 
-### Deployment
+## 💡 Örnek Kullanım Senaryoları
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- **Dashboard:** Günlük görev yükünüzü istatistiksel olarak görüntüleyin.
+- **Todo Filtreleme:** Tamamlanan görevleri ve yaklaşan bitiş tarihli işleri listeleyin.
+- **Kategori Yönetimi:** Renkli etiketlerle görevlerinizi gruplandırın.
+- **Durum Değiştirme:** Görevlerinizi hızla "Devam Ediyor" veya "Tamamlandı" durumuna alın.
 
-### `npm run build` fails to minify
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## 📁 Proje Yapısı
+
+```bash
+todo-api/            # Laravel API
+ └── app/
+ └── routes/api.php
+ └── database/seeders/
+ └── app/Repositories/
+ └── app/Services/
+
+todo-frontend/       # React Frontend
+ └── src/
+     └── components/
+     └── pages/
+     └── services/
+     └── hooks/
+     └── store/
+```
+
