@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { updateTodoStatus } from '../api/todos';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import Button from '../components/common/Button'; 
+
+import Button from '../components/common/Button';
+import Select from '../components/common/Select';
 
 const API_BASE_URL = 'http://localhost:8000/api';
 
@@ -12,7 +14,6 @@ const Dashboard = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    setLoading(true);
     axios
       .get(`${API_BASE_URL}/todos/all`)
       .then((res) => {
@@ -34,10 +35,7 @@ const Dashboard = () => {
           )
         );
       })
-      .catch((err) => {
-        console.error('Status update error:', err);
-        alert('Durum güncellenirken hata oluştu!');
-      });
+      .catch(() => alert('Durum güncellenirken hata oluştu!'));
   };
 
   const statusCounts = todos.reduce((acc, todo) => {
@@ -63,28 +61,18 @@ const Dashboard = () => {
     );
 
   return (
-    <div className="max-w-4xl mx-auto p-6">
-      <h2 className="text-3xl font-bold mb-4 text-center">Dashboard</h2>
+    <div className="max-w-4xl mx-auto p-6 dark:text-black">
+      <h2 className="text-3xl font-bold mb-4 text-center text-black dark:text-white">Dashboard</h2>
 
-      {/* Butonlar */}
-          <div className="flex justify-center gap-4 mb-8">
-      <Button
-        onClick={() => navigate('/todos')}
-        variant="primary"
-        aria-label="Todo Listesine Git"
-      >
-        Todo Listesi
-      </Button>
-      <Button
-        onClick={() => navigate('/categories')}
-        variant="success"
-        aria-label="Kategori Yönetimine Git"
-      >
-        Kategori Yönetimi
-      </Button>
-    </div>
+      <div className="flex justify-center gap-4 mb-8">
+        <Button onClick={() => navigate('/todos')} variant="primary">
+          Todo Listesi
+        </Button>
+        <Button onClick={() => navigate('/categories')} variant="success">
+          Kategori Yönetimi
+        </Button>
+      </div>
 
-      {/* Özet İstatistikler */}
       <section className="mb-10 p-6 bg-white rounded shadow-md">
         <h3 className="text-xl font-semibold mb-4">Özet İstatistikler</h3>
         <ul className="grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
@@ -107,9 +95,10 @@ const Dashboard = () => {
         </ul>
       </section>
 
-      {/* Yaklaşan Bitiş Tarihleri */}
-      <section className="p-6 bg-yellow-50 rounded shadow-md">
-        <h3 className="text-xl font-semibold mb-4">⏳ Yaklaşan Bitiş Tarihleri (3 gün içinde)</h3>
+      <section className="p-6 bg-white rounded shadow-md">
+        <h3 className="text-xl font-semibold mb-4">
+          ⏳ Yaklaşan Bitiş Tarihleri (3 gün içinde)
+        </h3>
         {upcomingTodos.length === 0 ? (
           <p className="text-gray-600">Yaklaşan bitiş tarihi olan todo yok.</p>
         ) : (
@@ -126,17 +115,16 @@ const Dashboard = () => {
                   </p>
                 </div>
 
-                <select
+                <Select
                   value={todo.status}
                   onChange={(e) => handleStatusChange(todo.id, e.target.value)}
-                  className="border rounded px-3 py-1 text-sm bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400"
-                  aria-label={`Durum değiştir: ${todo.title}`}
+                  className="text-sm"
                 >
                   <option value="pending">Beklemede</option>
                   <option value="in_progress">Devam Ediyor</option>
                   <option value="completed">Tamamlandı</option>
                   <option value="cancelled">İptal Edildi</option>
-                </select>
+                </Select>
               </li>
             ))}
           </ul>

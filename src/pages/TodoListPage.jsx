@@ -115,8 +115,8 @@ export default function TodoListPage() {
       />
 
       {editingTodo && (
-        <div className="border border-gray-300 rounded p-4 mt-6 bg-gray-50">
-          <h3 className="text-lg font-semibold mb-3">Görev Düzenle</h3>
+        <div className="border border-gray-300 rounded p-4 mt-6 bg-gray-50 dark:bg-gray-900">
+          <h3 className="text-lg font-semibold mb-3 ">Görev Düzenle</h3>
           <form onSubmit={handleEditSubmit} className="space-y-3">
             <div>
               <label className="block mb-1 font-medium">Başlık:</label>

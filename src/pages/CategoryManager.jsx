@@ -3,8 +3,10 @@ import axios from '../utils/axios';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+
 import ConfirmationModal from '../components/common/ConfirmationModal';
-import Button from '../components/common/Button'; // 🔹 Ortak buton bileşeni
+import Button from '../components/common/Button';
+import Input from '../components/common/Input';
 
 const schema = yup.object().shape({
   name: yup.string().required('Kategori adı gerekli'),
@@ -42,7 +44,6 @@ const CategoryManager = () => {
     } else {
       await axios.post('/api/categories', data);
     }
-
     reset();
     setEditingCategory(null);
     fetchCategories();
@@ -68,28 +69,39 @@ const CategoryManager = () => {
   };
 
   return (
-    <div className="p-6 max-w-3xl mx-auto">
-      <h2 className="text-xl font-bold mb-4">Kategori Yönetimi</h2>
+    <div className="p-6 max-w-3xl mx-auto dark:text-black">
+      <h2 className="text-xl font-bold mb-4 text-black dark:text-white">Kategori Yönetimi</h2>
 
-      {/* Form */}
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 bg-gray-50 p-4 rounded shadow">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="space-y-4 bg-white p-4 rounded shadow"
+      >
         <div>
-          <label className="block font-medium">Kategori Adı</label>
-          <input {...register('name')} className="w-full p-2 border rounded" />
-          {errors.name && <p className="text-red-600 text-sm">{errors.name.message}</p>}
+          <label className="block font-medium mb-1">Kategori Adı</label>
+          <Input
+            {...register('name')}
+            className="w-full"
+            placeholder="Kategori adı"
+          />
+          {errors.name && (
+            <p className="text-red-600 text-sm mt-1">{errors.name.message}</p>
+          )}
         </div>
         <div>
-          <label className="block font-medium">Renk (Opsiyonel)</label>
-          <input {...register('color')} className="w-full p-2 border rounded" type="color" />
+          <label className="block font-medium mb-1">Renk (Opsiyonel)</label>
+          <Input
+            {...register('color')}
+            type="color"
+            className="w-full"
+          />
         </div>
         <Button type="submit" variant="primary">
           {editingCategory ? 'Güncelle' : 'Ekle'}
         </Button>
       </form>
 
-      {/* Liste */}
       <div className="mt-8">
-        <h3 className="text-lg font-semibold mb-2">Mevcut Kategoriler</h3>
+        <h3 className="text-xl font-bold mb-4 text-black dark:text-white">Mevcut Kategoriler</h3>
         <ul className="space-y-2">
           {categories.map((category) => (
             <li
@@ -126,7 +138,6 @@ const CategoryManager = () => {
         </ul>
       </div>
 
-      {/* Silme Onay Modali */}
       <ConfirmationModal
         isOpen={showModal}
         title="Kategori Silinsin mi?"

@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -14,3 +15,14 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* Koyu tema aktifken form elemanlarının arka planı ve yazı rengini sabitle */
+.dark input,
+.dark select,
+.dark textarea {
+  background-color: white !important;
+  color: black !important;
+  border-color: #ccc !important;
+  caret-color: black !important;
+}
+

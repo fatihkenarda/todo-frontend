@@ -5,6 +5,8 @@ import PriorityIndicator from '../common/PriorityIndicator';
 import Pagination from '../common/Pagination';
 import Button from '../common/Button';
 
+import Select from '../common/Select';
+
 const statusLabels = {
   pending: 'Beklemede',
   in_progress: 'Devam Ediyor',
@@ -40,7 +42,7 @@ export default function TodoItem({ todo, onEdit, onDelete, onStatusChange }) {
       </div>
 
       <div className="flex items-center gap-2 mt-2">
-        <select
+        <Select
           value={todo.status}
           onChange={(e) => onStatusChange(todo.id, e.target.value)}
           className="border border-gray-300 rounded px-2 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
@@ -48,7 +50,7 @@ export default function TodoItem({ todo, onEdit, onDelete, onStatusChange }) {
           {Object.entries(statusLabels).map(([key, label]) => (
             <option key={key} value={key}>{label}</option>
           ))}
-        </select>
+        </Select>
       </div>
 
             <div className="flex justify-end gap-2 mt-4">

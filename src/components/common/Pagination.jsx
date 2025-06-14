@@ -14,7 +14,7 @@ export default function Pagination({ currentPage, totalPages, onPageChange }) {
       <button
         onClick={() => onPageChange(currentPage - 1)}
         disabled={currentPage === 1}
-        className="px-3 py-1 text-sm rounded border bg-white hover:bg-gray-100 disabled:opacity-50"
+        className="px-3 py-1 text-sm rounded border bg-white text-black hover:bg-gray-100 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 disabled:opacity-50"
       >
         ‹ Önceki
       </button>
@@ -25,8 +25,8 @@ export default function Pagination({ currentPage, totalPages, onPageChange }) {
           onClick={() => onPageChange(page)}
           className={`px-3 py-1 text-sm rounded border ${
             page === currentPage
-              ? 'bg-blue-600 text-white'
-              : 'bg-white hover:bg-gray-100'
+              ? 'bg-blue-600 text-white dark:bg-blue-500'
+              : 'bg-white text-black hover:bg-gray-100 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700'
           }`}
         >
           {page}
@@ -36,7 +36,7 @@ export default function Pagination({ currentPage, totalPages, onPageChange }) {
       <button
         onClick={() => onPageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
-        className="px-3 py-1 text-sm rounded border bg-white hover:bg-gray-100 disabled:opacity-50"
+        className="px-3 py-1 text-sm rounded border bg-white text-black hover:bg-gray-100 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 disabled:opacity-50"
       >
         Sonraki ›
       </button>
