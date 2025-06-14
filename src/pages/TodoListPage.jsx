@@ -90,6 +90,7 @@ export default function TodoListPage() {
       fetchTodos();
     } catch (error) {
       console.error('Görev düzenlenirken hata:', error);
+      window.alert('Görev düzenlenirken bir hata oluştu. Lütfen bilgileri kontrol edin.');
     }
   };
 

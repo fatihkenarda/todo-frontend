@@ -25,7 +25,7 @@ export default function TodoList({
 
   const confirmDelete = () => {
     if (selectedTodo) {
-      onDelete(selectedTodo);
+      onDelete(selectedTodo.id);
     }
     setShowModal(false);
   };

@@ -33,7 +33,7 @@ function App() {
         <div className="flex justify-end mb-4">
           <button
             onClick={() => setDarkMode(!darkMode)}
-            className="px-4 py-2 bg-gray-200 dark:bg-gray-700 rounded shadow hover:bg-gray-300 dark:hover:bg-gray-600 transition"
+            className="px-4 py-2 bg-gray-200 dark:bg-gray-700 text-black dark:text-white"
           >
             {darkMode ? 'Açık Tema' : 'Koyu Tema'}
           </button>
